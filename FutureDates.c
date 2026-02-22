@@ -1,3 +1,7 @@
+/*Future dates
+Practical 3, exercise-1 
+@Nishchal Ranjitkar*/
+
 #include<stdio.h>
 
 int main(){

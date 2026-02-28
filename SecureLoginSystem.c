@@ -3,25 +3,45 @@ Practical 3, exercise-3
 @Nishchal Ranjitkar*/
 
 #include<stdio.h>
+#include<string.h>
 #define PIN 1298
 
 int main(){
-    int pin;
+    char input[20];
     int attempt=0;
+    
+    int i, pin;
+    int valid;
     
     while(attempt< 3){
         printf("Enter Pin code: ");
-        if(scanf("%d", &pin)!= 1){
-            printf("Invalid. Numbers only.\n");
-            while(getchar()!='\n');
+        if(scanf("%19s", input)!= 1){
             continue;
         }
 
-        if(pin<1000||pin>9999){
-            printf("Error: Enter only 4 digits.\n");
+        valid=1;
+
+        if(strlen(input)!=4){
+            valid=0;
+        }
+
+        for(i=0; input[i]!='\0';i++){
+            if(input[i]<'0'||input[i]>'9'){
+                valid=0;
+                break;
+            }
+        }
+
+        if(!valid){
+            printf("Error: Enter exact 4 digits.\n");
             continue;
         }
-        
+
+        pin=0;
+        for(i=0;i<4;i++){
+            pin=pin*10+(input[i]-'0');
+        }
+
         if(pin==PIN){
             printf("Access Granted!\n");
             return 0;
